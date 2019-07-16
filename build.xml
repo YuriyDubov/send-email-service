@@ -34,6 +34,9 @@
                 <attribute name="Main-Class" value="${package}.App"/>
             </manifest>
             <zipgroupfileset dir="libs" includes="*.jar"/>
+            <fileset dir="./">
+                <include name="*.json" />
+            </fileset>
         </jar>
     </target>
 
