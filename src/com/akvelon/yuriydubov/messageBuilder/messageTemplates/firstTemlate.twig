@@ -1,0 +1,9 @@
+Dear {{name}},
+You received this email because we sent it to you.
+Here is a list of all the NBA matches that we managed to find.
+{% item in list %}
+
+
+{{item.date}}
+{{item.home_team.abbreviation}} {{item.home_team_score}} : {{item.visitor_team_score}} {{{{item.visitor_team.abbreviation}}}}
+{% endfor %}
