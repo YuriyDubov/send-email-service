@@ -1,10 +1,13 @@
 package com.akvelon.yuriydubov;
 
-import com.akvelon.yuriydubov.logging.ConsoleLogger;
-import com.akvelon.yuriydubov.messageSender.EmailMessageSender;
 import com.akvelon.yuriydubov.gameProvider.NbaGameProvider;
+import com.akvelon.yuriydubov.logging.ConsoleLogger;
+import com.akvelon.yuriydubov.messageBuilder.MessageBuilder;
+import com.akvelon.yuriydubov.messageSender.EmailMessageSender;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
+import org.jtwig.JtwigModel;
 
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
@@ -26,10 +29,13 @@ public class App {
 
             System.out.println(password);
 
+            JSONObject jsonObject = (JSONObject) JSONValue.parse(response.toString());
+            JtwigModel model = MessageBuilder.createModelForFirstTemplate(jsonObject);
+            String body = MessageBuilder.render("templates/firstTemlate.twig", model);
+
             String[] recipients = new String[1];
             recipients[0] = recipient;
             String subject = "Java send mail example";
-            String body = "Welcome to JavaMail!";
 
             EmailMessageSender.send(login, password, recipients, subject, body);
 
