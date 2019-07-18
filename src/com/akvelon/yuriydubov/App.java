@@ -36,7 +36,6 @@ public class App {
             String[] recipients = new String[1];
             recipients[0] = recipient;
             String subject = "Java send mail example";
-            // String body = "Welcome to JavaMail!";
 
             EmailMessageSender.send(login, password, recipients, subject, body);
 
