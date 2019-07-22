@@ -1,4 +1,4 @@
-package com.akvelon.yuriydubov.messageSender;
+package com.akvelon.yuriydubov.senders;
 
 import java.util.*;
 import javax.mail.*;

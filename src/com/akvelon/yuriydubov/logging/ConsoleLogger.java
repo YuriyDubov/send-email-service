@@ -1,9 +1,9 @@
 package com.akvelon.yuriydubov.logging;
 
-public class ConsoleLogger {
+public class ConsoleLogger implements Ilogger {
 
-    public static void sayHello() {
-        System.out.println("HellO!");
+    @Override
+    public void log(String msg) {
+        System.out.println(msg);
     }
-
 }

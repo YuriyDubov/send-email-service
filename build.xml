@@ -37,6 +37,9 @@
             <fileset dir="${src}">
                 <include name="*.properties" />
             </fileset>
+            <fileset dir="${src}">
+                <include name="**/*.twig" />
+            </fileset>
         </jar>
     </target>
 

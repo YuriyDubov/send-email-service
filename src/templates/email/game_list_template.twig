@@ -5,5 +5,5 @@ Here is a list of all the NBA matches that we managed to find.
 
 {% for game in games %}
      {{ game.date }}
-     {{ game.home_team.abbreviation }} - {{ game.home_team_score }}  : {{ game.visitor_team_score }} - {{ game.visitor_team.abbreviation }}
+     {{ game.getHomeTeam().getAbbreviation() }} - {{ game.getHomeTeamScore() }}  : {{ game.getVisitorTeamScore() }} - {{ game.getVisitorTeam().getAbbreviation() }}
 {% endfor %}
