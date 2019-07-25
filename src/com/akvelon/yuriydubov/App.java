@@ -1,56 +1,42 @@
 package com.akvelon.yuriydubov;
 
-import com.akvelon.yuriydubov.logging.Logger;
 import com.akvelon.yuriydubov.models.Game;
 import com.akvelon.yuriydubov.repositories.NbaRepository;
-import com.akvelon.yuriydubov.logging.ConsoleLogger;
 import com.akvelon.yuriydubov.rendering.MessageBuilder;
 import com.akvelon.yuriydubov.senders.EmailMessageSender;
-import org.json.simple.JSONObject;
-import org.json.simple.JSONValue;
+import org.apache.logging.log4j.Logger;
 import org.jtwig.JtwigModel;
-
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.List;
-import java.util.Properties;
+
+import org.apache.logging.log4j.LogManager;
 
 public class App {
 
-    private static Logger logger;
+    private static final Logger logger = LogManager.getLogger(App.class);
 
     public static void main(String[] args) {
-        logger = new Logger(new ConsoleLogger());
-        logger.log("started...");
+        logger.info("Start application");
 
         List<Game> gameList = NbaRepository.getAllGames();
 
-        Properties property = new Properties();
-        try {
-            property.load(App.class.getClassLoader().getResourceAsStream("config.properties"));
-            String login = property.getProperty("login");
-            String password = property.getProperty("password");
-            String recipient = property.getProperty("recipient");
+        logger.debug("All games have been received");
 
+        try {
             JtwigModel model = MessageBuilder.createModelForFirstTemplate(gameList);
             String body = MessageBuilder.render("templates/email/game_list_template.twig", model);
 
-            String[] recipients = new String[1];
-            recipients[0] = recipient;
+            logger.debug("Message body has been built");
+
             String subject = "Java send mail example";
+            EmailMessageSender.send(subject, body);
 
-            logger.log(body);
-
-            EmailMessageSender.send(login, password, recipients, subject, body);
-
-            System.out.println("Goodbye from Main");
+            logger.info("End");
         }
-        catch (FileNotFoundException ex) {
-            System.err.println("File with properties not found");
+        catch (Exception ex) {
             ex.printStackTrace();
-        }
-        catch (IOException ex) {
-            ex.printStackTrace();
+            logger.error(ex.getMessage());
+            logger.error(ex.getCause());
+            // TODO: add handler if was an error
         }
     }
 }

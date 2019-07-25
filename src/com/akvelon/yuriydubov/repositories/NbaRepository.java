@@ -13,41 +13,53 @@ import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class NbaRepository {
+    private static final Logger logger = LogManager.getLogger(NbaRepository.class);
 
     public static List<Game> getAllGames() {
+        logger.info("Get all NBA games start");
         String urlString = "https://free-nba.p.rapidapi.com/games?page=0&per_page=25";
         try {
-                URL url = new URL(urlString);
-                HttpURLConnection connect = (HttpURLConnection) url.openConnection();
+            URL url = new URL(urlString);
+            HttpURLConnection connect = (HttpURLConnection) url.openConnection();
 
-                connect.setRequestMethod("GET");
+            logger.debug("Open connection to " + urlString);
 
-                connect.setRequestProperty("X-RapidAPI-Host", "free-nba.p.rapidapi.com");
-                connect.setRequestProperty("X-RapidAPI-Key", "29ad64a363msh8ae2e51447f9aa0p1d99a4jsn6b4186d7e450");
+            connect.setRequestMethod("GET");
+            connect.setRequestProperty("X-RapidAPI-Host", "free-nba.p.rapidapi.com");
+            connect.setRequestProperty("X-RapidAPI-Key", "29ad64a363msh8ae2e51447f9aa0p1d99a4jsn6b4186d7e450");
 
-                BufferedReader input = new BufferedReader(
-                        new InputStreamReader(connect.getInputStream()));
+            BufferedReader input = new BufferedReader(
+                    new InputStreamReader(connect.getInputStream()));
 
-                String inputLine;
-                StringBuffer response = new StringBuffer();
+            logger.debug("Input stream reader was opened");
 
-                while ((inputLine = input.readLine()) != null) {
-                    response.append(inputLine);
-                }
-                input.close();
+            String inputLine;
+            StringBuffer response = new StringBuffer();
 
-                JsonObject jsonResponse = new Gson().fromJson(response.toString(), JsonObject.class);
+            while ((inputLine = input.readLine()) != null) {
+                response.append(inputLine);
+            }
+            input.close();
 
-                Game[] gameArray = new Gson().fromJson(jsonResponse.get("data").toString(), Game[].class);
+            logger.debug("Input stream reader was closed");
 
-                List<Game> games = new ArrayList<>(Arrays.asList(gameArray));
+            JsonObject jsonResponse = new Gson().fromJson(response.toString(), JsonObject.class);
 
-                return games;
+            Game[] gameArray = new Gson().fromJson(jsonResponse.get("data").toString(), Game[].class);
+
+            List<Game> games = new ArrayList<>(Arrays.asList(gameArray));
+
+            return games;
         }
         catch (Exception ex) {
             ex.printStackTrace();
+            logger.error(ex.getMessage());
+            logger.error(ex.getCause());
+            logger.warn("GetAllGames will return empty list");
             return new ArrayList<>();
         }
     }

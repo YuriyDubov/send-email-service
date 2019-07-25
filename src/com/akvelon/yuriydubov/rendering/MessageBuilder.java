@@ -1,11 +1,8 @@
 package com.akvelon.yuriydubov.rendering;
 import com.akvelon.yuriydubov.models.Game;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 import org.jtwig.JtwigModel;
 import org.jtwig.JtwigTemplate;
-import java.util.ArrayList;
 import java.util.List;
 
 public class MessageBuilder {

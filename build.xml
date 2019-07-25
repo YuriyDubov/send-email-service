@@ -35,10 +35,13 @@
             </manifest>
             <zipgroupfileset dir="libs" includes="*.jar"/>
             <fileset dir="${src}">
+                <include name="**/*.twig" />
+            </fileset>
+            <fileset dir="${src}">
                 <include name="*.properties" />
             </fileset>
             <fileset dir="${src}">
-                <include name="**/*.twig" />
+                <include name="*.xml" />
             </fileset>
         </jar>
     </target>
