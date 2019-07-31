@@ -6,3 +6,4 @@ build/
 *.jar
 !libs/*.jar
 logs/
+target/
