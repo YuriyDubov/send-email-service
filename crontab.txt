@@ -1,1 +1,2 @@
-*/1  *  *  *  * /script.sh 1> /var/log/script.log
+* * * * * cd /opt/service && ./start.sh
+#last line required

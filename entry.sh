@@ -1,4 +1,7 @@
- #!/bin/sh
- # start cron
- crond -f -l 8
- # echo "This is a script, run bitch!"
+#!/bin/sh
+
+echo entry.sh: starting cron
+crond -f
+echo entry.sh: cron started
+
+
