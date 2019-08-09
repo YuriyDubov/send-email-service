@@ -41,7 +41,7 @@ public class EmailMessageSender {
                 message.addRecipient(Message.RecipientType.TO, toAddress);
             }
             message.setSubject(subject);
-            message.setText(body);
+            message.setContent(body, "text/html; charset=utf-8");
 
             logger.info("Message ready to send");
 
@@ -65,7 +65,7 @@ public class EmailMessageSender {
         }
     }
 
-    public static void initCredentials () {
+    public static void initCredentials() {
         try {
             logger.debug("Start init credentials");
             Properties property = new Properties();
@@ -114,4 +114,3 @@ public class EmailMessageSender {
         EmailMessageSender.recipients = recipients;
     }
 }
-

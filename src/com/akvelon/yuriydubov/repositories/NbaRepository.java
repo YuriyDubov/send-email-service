@@ -54,8 +54,7 @@ public class NbaRepository {
             List<Game> games = new ArrayList<>(Arrays.asList(gameArray));
 
             return games;
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
             logger.error(ex.getMessage());
             logger.error(ex.getCause());
@@ -63,5 +62,4 @@ public class NbaRepository {
             return new ArrayList<>();
         }
     }
-
 }

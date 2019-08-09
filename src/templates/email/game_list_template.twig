@@ -1,9 +1,0 @@
-Dear {{name}},
-You received this email because we sent it to you.
-Here is a list of all the NBA matches that we managed to find.
-
-
-{% for game in games %}
-     {{ game.date }}
-     {{ game.getHomeTeam().getAbbreviation() }} - {{ game.getHomeTeamScore() }}  : {{ game.getVisitorTeamScore() }} - {{ game.getVisitorTeam().getAbbreviation() }}
-{% endfor %}

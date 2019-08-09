@@ -1,6 +1,6 @@
 package com.akvelon.yuriydubov.models;
+
 import com.google.gson.annotations.SerializedName;
-import org.json.simple.*;
 
 public class Team {
     @SerializedName("id")

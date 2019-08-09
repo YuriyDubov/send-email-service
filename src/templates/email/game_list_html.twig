@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body style="margin: 0; padding: 0;">
+<table border="1" cellpadding="0" cellspacing="0" width="100%">
+    <tr>
+        <td>
+            <table align="center" border="1" cellpadding="0" cellspacing="0" width="600"
+                   style="border-collapse: collapse;">
+                <tr>
+                    <td bgcolor="#24292e" align="center">
+                        <img src="https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwiY8OK21_PjAhXBdJoKHeCMCpUQjRx6BAgBEAQ&url=https%3A%2F%2Fru.pngtree.com%2Ffreepng%2Fnba_1673959.html&psig=AOvVaw17xIoeVTpsn6oXPbH_q0MQ&ust=1565367710597530"
+                             height=28 width=28>
+                        </img>
+                        <font color="#ffffff" size=6>NBA games schedule</font>
+                    </td>
+                </tr>
+                <tr bgcolor="#f7f7f7" align="center">
+                    <td>
+                        <table>
+                            <tr>
+                                <font> Dear user, <br>you received this email because we sent it to you.</font>
+                            </tr>
+                            {% for game in games %}
+                                <tr>
+                                    <td>{{ dateToString(game.getDate()) }}</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <font face="Brush Script MT, Brush Script Std, cursive" size=5>
+                                            {{ game.getHomeTeam().getAbbreviation() }}
+                                        </font>
+                                    </td>
+                                    <td>
+                                        {{ game.getHomeTeamScore() }}
+                                    </td>
+                                    <td>:</td>
+                                    <td>
+                                        {{ game.getVisitorTeamScore() }}
+                                    </td>
+                                    <td>
+                                        <font face="Brush Script MT, Brush Script Std, cursive" size=5>
+                                            {{ game.getVisitorTeam().getAbbreviation() }}
+                                        </font>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td bgcolor="#24292e" align="center">
+                        <font color="#ffffff" face="Brush Script MT, Brush Script Std, cursive">
+                            This email has been sent via Email Service
+                        </font>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

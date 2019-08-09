@@ -3,7 +3,6 @@
 out/
 build/
 .idea/
-*.jar
 !libs/*.jar
 logs/
 target/

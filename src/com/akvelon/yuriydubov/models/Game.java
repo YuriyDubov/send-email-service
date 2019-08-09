@@ -7,7 +7,6 @@ import java.util.Date;
 public class Game {
     @SerializedName("id")
     private String id;
-    // public Date date;
 
     @SerializedName("date")
     private Date date;
@@ -24,17 +23,29 @@ public class Game {
     @SerializedName("visitor_team_score")
     private int visitorTeamScore;
 
-    public String getId() { return id; }
+    public String getId() {
+        return id;
+    }
 
-    public void setId(String id) { this.id = id; }
+    public void setId(String id) {
+        this.id = id;
+    }
 
-    public Date getDate() { return date; }
+    public Date getDate() {
+        return date;
+    }
 
-    public void setDate(Date date) { this.date = date; }
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
-    public Team getHomeTeam() { return homeTeam; }
+    public Team getHomeTeam() {
+        return homeTeam;
+    }
 
-    public void setHomeTeam(Team homeTeam) { this.homeTeam = homeTeam; }
+    public void setHomeTeam(Team homeTeam) {
+        this.homeTeam = homeTeam;
+    }
 
     public int getHomeTeamScore() {
         return homeTeamScore;
@@ -44,9 +55,13 @@ public class Game {
         this.homeTeamScore = homeTeamScore;
     }
 
-    public Team getVisitorTeam() { return visitorTeam; }
+    public Team getVisitorTeam() {
+        return visitorTeam;
+    }
 
-    public void setVisitorTeam(Team visitorTeam) { this.visitorTeam = visitorTeam; }
+    public void setVisitorTeam(Team visitorTeam) {
+        this.visitorTeam = visitorTeam;
+    }
 
     public int getVisitorTeamScore() {
         return visitorTeamScore;
